@@ -1,0 +1,31 @@
+<div>
+	<form id="create-form">
+		<input id="page-title" />
+
+		<button type="submit">Create file</button>
+	</form>
+
+	<h1>Pages</h1>
+
+	{{range .Pages}}
+		<div>
+			<a href="/view/{{ . }}">{{ . }}</a>
+		</div>
+	{{else}}
+		<div>
+			<strong>no rows</strong>
+		</div>
+	{{end}}
+
+	<script>
+		document.getElementById('create-form').addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			var input = document.getElementById('page-title');
+
+			if (!!input.value) {
+				window.location = '/edit/' + input.value;
+			}
+		});
+	</script>
+</div>
